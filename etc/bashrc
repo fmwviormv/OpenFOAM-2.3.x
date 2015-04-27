@@ -42,7 +42,7 @@ export WM_PROJECT_VERSION=2.3.x
 #
 # Location of the OpenFOAM installation
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-foamInstall=$HOME/$WM_PROJECT
+foamInstall=$HOME/for/cfd/$WM_PROJECT
 # foamInstall=~$WM_PROJECT
 # foamInstall=/opt/$WM_PROJECT
 # foamInstall=/usr/local/$WM_PROJECT
@@ -101,7 +101,7 @@ export FOAM_SIGFPE=
 # The old dirs to be cleaned from the various environment variables
 # - remove anything under top-level directory.
 # NB: the WM_PROJECT_INST_DIR might not be identical between versions
-foamOldDirs="$FOAM_INST_DIR $WM_PROJECT_SITE $HOME/$WM_PROJECT/$USER"
+foamOldDirs="$FOAM_INST_DIR $WM_PROJECT_SITE $HOME/for/cfd/openfoam/$WM_PROJECT/$USER"
 if [ "$WM_PROJECT_INST_DIR" != "$FOAM_INST_DIR" ]
 then
     foamOldDirs="$WM_PROJECT_INST_DIR $foamOldDirs"
@@ -129,7 +129,7 @@ fi
 
 # Location of user files
 # ~~~~~~~~~~~~~~~~~~~~~~
-export WM_PROJECT_USER_DIR=$HOME/$WM_PROJECT/$USER-$WM_PROJECT_VERSION
+export WM_PROJECT_USER_DIR=$HOME/for/cfd/openfoam/$WM_PROJECT/$USER-$WM_PROJECT_VERSION
 
 
 # Source files, possibly with some verbosity

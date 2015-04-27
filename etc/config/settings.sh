@@ -141,6 +141,82 @@ Linux)
     esac
     ;;
 
+OpenBSD)
+    WM_ARCH=openbsd
+
+    # compiler specifics
+    case `uname -m` in
+    i686)
+        ;;
+
+    amd64)
+        case "$WM_ARCH_OPTION" in
+        32)
+            export WM_COMPILER_ARCH=64
+            export WM_CC='egcc'
+            export WM_CXX='eg++'
+            export WM_CFLAGS='-m32 -fPIC'
+            export WM_CXXFLAGS='-m32 -fPIC'
+            export WM_LDFLAGS='-m32'
+            ;;
+        64)
+            WM_ARCH=openbsd64
+            export WM_COMPILER_LIB_ARCH=64
+            export WM_CC='egcc'
+            export WM_CXX='eg++'
+            export WM_CFLAGS='-fPIC'
+            export WM_CXXFLAGS='-fPIC'
+            export WM_LDFLAGS=''
+            ;;
+        *)
+            echo "Unknown WM_ARCH_OPTION '$WM_ARCH_OPTION', should be 32 or 64"\
+                 1>&2
+            ;;
+        esac
+        ;;
+
+    ia64)
+        WM_ARCH=openbsdIA64
+        export WM_COMPILER=I64
+        ;;
+
+    mips64)
+        WM_ARCH=SiCortex64
+        WM_MPLIB=MPI
+        export WM_COMPILER_LIB_ARCH=64
+        export WM_CC='egcc'
+        export WM_CXX='eg++'
+        export WM_CFLAGS='-mabi=64 -fPIC'
+        export WM_CXXFLAGS='-mabi=64 -fPIC'
+        export WM_LDFLAGS='-mabi=64 -G0'
+        ;;
+
+    armv7l)
+        WM_ARCH=openbsdARM7
+        export WM_COMPILER_LIB_ARCH=32
+        export WM_CC='egcc'
+        export WM_CXX='eg++'
+        export WM_CFLAGS='-fPIC'
+        export WM_CXXFLAGS='-fPIC'
+        export WM_LDFLAGS=
+        ;;
+
+    ppc64)
+        WM_ARCH=openbsdPPC64
+        export WM_COMPILER_LIB_ARCH=64
+        export WM_CC='egcc'
+        export WM_CXX='eg++'
+        export WM_CFLAGS='-m64 -fPIC'
+        export WM_CXXFLAGS='-m64 -fPIC'
+        export WM_LDFLAGS='-m64'
+        ;;
+
+    *)
+        echo Unknown processor type `uname -m` for OpenBSD 1>&2
+        ;;
+    esac
+    ;;
+
 SunOS)
     WM_ARCH=SunOS64
     WM_MPLIB=FJMPI
